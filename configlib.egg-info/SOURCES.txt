@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+config_lib/__init__.py
+config_lib/parser.py
+config_lib/schema.py
+config_lib/validator.py
+configlib.egg-info/PKG-INFO
+configlib.egg-info/SOURCES.txt
+configlib.egg-info/dependency_links.txt
+configlib.egg-info/requires.txt
+configlib.egg-info/top_level.txt
+tests/test_validation.py
