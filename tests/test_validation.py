@@ -1,5 +1,3 @@
-import pytest
-from jsonschema import ValidationError
 from config_lib.validator import validate_config
 
 schema = {
@@ -14,19 +12,24 @@ schema = {
 
 def test_valid_config():
     config = {"name": "MyApp", "debug": True}
-    validate_config(config, schema)  # не повинно викликати виняток
+    valid, msg = validate_config(config, schema)
+    assert valid is True
+    assert msg == "Validation passed"
 
 def test_missing_required_field():
     config = {"debug": True}
-    with pytest.raises(ValidationError):
-        validate_config(config, schema)
+    valid, msg = validate_config(config, schema)
+    assert valid is False
+    assert "is a required property" in msg
 
 def test_invalid_type():
     config = {"name": 123, "debug": True}
-    with pytest.raises(ValidationError):
-        validate_config(config, schema)
+    valid, msg = validate_config(config, schema)
+    assert valid is False
+    assert "123 is not of type 'string'" in msg
 
 def test_additional_field_not_allowed():
     config = {"name": "App", "extra": "not allowed"}
-    with pytest.raises(ValidationError):
-        validate_config(config, schema)
+    valid, msg = validate_config(config, schema)
+    assert valid is False
+    assert "Additional properties are not allowed" in msg
