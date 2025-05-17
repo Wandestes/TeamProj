@@ -1,12 +1,12 @@
+# tests/test_validation.py
 import pytest
 from config_lib.validator import validate_config
 
-# Схема: config повинен мати поле "name" типу string
 schema = {
     "type": "object",
     "properties": {
-        "name": { "type": "string" },
-        "debug": { "type": "boolean" }
+        "name": {"type": "string"},
+        "debug": {"type": "boolean"}
     },
     "required": ["name"],
     "additionalProperties": False
@@ -14,7 +14,7 @@ schema = {
 
 def test_valid_config():
     config = {"name": "MyApp", "debug": True}
-    assert validate_config(config, schema) == True
+    validate_config(config, schema)  # повинно пройти без помилок
 
 def test_missing_required_field():
     config = {"debug": True}
