@@ -1,8 +1,13 @@
-from jsonschema import validate, ValidationError
+import jsonschema
 
-def validate_config(config, schema):
-    try:
-        validate(instance=config, schema=schema)
-        return True, "Validation passed"
-    except ValidationError as e:
-        return False, f"Validation error: {e.message}"
+
+def validate_config(config: dict, schema: dict) -> bool:
+    """
+    Перевіряє відповідність конфігурації схемі.
+
+    :param config: Дані конфігурації
+    :param schema: JSON-схема для валідації
+    :return: True, якщо валідна, інакше викликає виняток
+    """
+    jsonschema.validate(instance=config, schema=schema)
+    return True
