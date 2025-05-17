@@ -9,4 +9,5 @@ configlib.egg-info/SOURCES.txt
 configlib.egg-info/dependency_links.txt
 configlib.egg-info/requires.txt
 configlib.egg-info/top_level.txt
+tests/test_parser_schema.py
 tests/test_validation.py
